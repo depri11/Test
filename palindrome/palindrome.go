@@ -30,14 +30,14 @@ func NumOfPalindrom(input string) int {
 	var result int
 
 	for i := min; i <= max; i++ {
-		var res int
+		var reverse int
 
 		for temp := i; temp > 0; temp /= 10 {
 			remainder := i % 10
-			res = (res * 10) + remainder
+			reverse = (reverse * 10) + remainder
 		}
 
-		if i == res {
+		if i == reverse {
 			result += 1
 		}
 	}
