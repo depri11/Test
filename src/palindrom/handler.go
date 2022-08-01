@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/depri11/Test/src/helpers"
 	"github.com/depri11/Test/src/interfaces"
 	"github.com/depri11/Test/src/models"
 )
@@ -19,12 +20,8 @@ func NewHandler(service interfaces.ServicePalindrome) *handler {
 func (h *handler) Palindrome(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		// Add the response return message
-		HandlerMessage := []byte(`{
-		 "success": false,
-		 "message": "Check your HTTP method: Invalid HTTP method executed",
-		}`)
-
-		json.NewEncoder(w).Encode(HandlerMessage)
+		response := helpers.ResponseAPI(405, "Check your HTTP method: Invalid HTTP method executed", nil)
+		json.NewEncoder(w).Encode(response)
 		return
 	}
 
@@ -33,6 +30,6 @@ func (h *handler) Palindrome(w http.ResponseWriter, r *http.Request) {
 	var input models.Palindrome
 	json.NewDecoder(r.Body).Decode(&input)
 
-	result := h.service.CheckPalindrom(input)
-	json.NewEncoder(w).Encode(result)
+	response := h.service.CheckPalindrom(input)
+	json.NewEncoder(w).Encode(response)
 }
