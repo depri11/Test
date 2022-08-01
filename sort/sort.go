@@ -32,7 +32,8 @@ var categories = []Category{
 	{3, "Social Sciences (300)"},
 }
 
-func AppendToStruct(input string) []Book {
+func SortByCategory(input string) string {
+	var temp []string
 	arr := strings.Split(input, " ")
 
 	var books []Book
@@ -54,17 +55,13 @@ func AppendToStruct(input string) []Book {
 		}
 	}
 
-	return books
-}
-
-func SortByCategory(Books []Book, Categories []Category) string {
-	var temp []string
-
-	for i := 0; i < len(Categories); i++ {
+	for i := 0; i < len(categories); i++ {
 		var arrNum []int
-		for j := 0; j < len(Books); j++ {
-			if Categories[i].ID == Books[j].CategoryID {
-				arrNum = append(arrNum, Books[j].Height)
+		for j := 0; j < len(books); j++ {
+			if categories[i].ID == books[j].CategoryID {
+				if len(arrNum) < 3 {
+					arrNum = append(arrNum, books[j].Height)
+				}
 			}
 		}
 
@@ -73,10 +70,10 @@ func SortByCategory(Books []Book, Categories []Category) string {
 		})
 
 		for _, v := range arrNum {
-			for k := 0; k < len(Books); k++ {
-				if Categories[i].ID == Books[k].CategoryID {
-					if v == Books[k].Height {
-						str := strconv.Itoa(Books[k].CategoryID) + Books[k].Name + strconv.Itoa(Books[k].Height)
+			for k := 0; k < len(books); k++ {
+				if categories[i].ID == books[k].CategoryID {
+					if v == books[k].Height {
+						str := strconv.Itoa(books[k].CategoryID) + books[k].Name + strconv.Itoa(books[k].Height)
 						temp = append(temp, str)
 					}
 				}
@@ -90,8 +87,6 @@ func SortByCategory(Books []Book, Categories []Category) string {
 }
 
 func main() {
-	// arr := appendToStruct("3A13 5X19 9Y20 2C18 1N20 3N20 1M21 1F14 9A21 3N21 0E13 5G14 8A23 9E22 3N14")
-	arr := AppendToStruct("3A13")
-	// res := sortByCategory(arr, categories)
-	fmt.Println(arr)
+	res := SortByCategory("3A13 5X19 9Y20 2C18 1N20 3N20 1M21 1F14 9A21 3N21 0E13 5G14 8A23 9E22 3N14")
+	fmt.Println(res)
 }
