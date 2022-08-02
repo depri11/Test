@@ -6,6 +6,7 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
+// Response represents a response from the API
 func ResponseAPI(status int, message string, data interface{}) *Response {
 	return &Response{
 		Status:  status,
