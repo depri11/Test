@@ -19,7 +19,7 @@ func getDigit(s string, i int, main int) int {
 	// Find value at index i with the length of main
 	value := 0
 	for l := 0; l < main; l++ {
-		temp := bytesToInt(s[i+l]) - '0'
+		temp := int(s[i+l]) - '0'
 		if temp < 0 || temp > 9 {
 			return -1
 		}
@@ -66,10 +66,3 @@ func findMissingNumber(s string) int {
 	}
 	return -1 // Not found (error) or there's no missing number
 }
-
-// Function to convert byte to int
-func bytesToInt(data byte) int {
-	return int(byte(data))
-}
-
-// End of function
