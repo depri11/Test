@@ -64,7 +64,7 @@ func SortByCategory(input string) string {
 		var arrNum []int // Declare array of arrNum to store the number of books in each category
 		for j := 0; j < len(books); j++ {
 			if categories[i].ID == books[j].CategoryID {
-				if len(arrNum) < 3 {
+				if len(arrNum) < 3 { // A maximum of 2 books for the same category id and name
 					arrNum = append(arrNum, books[j].Height) // Append the book data to the books slice by category with books slice height
 				}
 			}
